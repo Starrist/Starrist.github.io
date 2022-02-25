@@ -29,7 +29,7 @@
 <meta property="og:description" content="青砖伴瓦漆，白马踏新泥">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-23T13:22:34.000Z">
-<meta property="article:modified_time" content="2022-02-23T13:23:00.807Z">
+<meta property="article:modified_time" content="2022-02-25T13:36:01.713Z">
 <meta property="article:author" content="苦恶Kuwa">
 <meta name="twitter:card" content="summary">
 
@@ -237,11 +237,6 @@
 
           </div>
           
-    
-  <div class="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC81NTU4Mi8zMjA0OQ=="></div>
-  </div>
-  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -454,19 +449,32 @@
 
   
 
+
 <script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'Ej09xcOTovlVJNy3VxLIJejQ-gzGzoHsz',
+      appKey     : 'a6CnkKjnaYytfpnCVHW62iaQ',
+      placeholder: "点此开始评论。可以选择更换你的昵称，以及留下邮箱。在cn.gravatar.com注册后即可更换头像~(不过国内不太能打的开)",
+      avatar     : 'retro',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
 });
 </script>
 
